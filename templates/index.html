@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Covid19 Death Predictor</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+  <!--Card-->
+
+  <div class="main-container">
+    <div class="heading">
+      <h1 class="heading__title">Prediksi COVID19 Di Indonesia</h1>
+    </div>
+    <div class="cards">
+      <div class="card card-1">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <h1 class="card__title">4.260.544</h1>
+        <p class="card__apply">
+          <a class="card__link">Total Kasus <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+      <div class="card card-2">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <h1 class="card__title">4.923</h1>
+        <p class="card__apply">
+          <a class="card__link">Kasus Aktif <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+      <div class="card card-3">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <h1 class="card__title">4.111.619</h1>
+        <p class="card__apply">
+          <a class="card__link">Sembuh <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+      <div class="card card-4">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <h1 class="card__title">144.002</h1>
+        <p class="card__apply">
+          <a class="card__link">Meninggal <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
+    </div>
+    <p>Pembaruan Data Terakhir </p>
+    <p> 19 Desember 2021 </p>
+  </div>
+
+
+ <div class="form_prediksi">
+	<h1></h1>
+     <h2> Masukan index total hari untuk memprediksi total kematian Covid19 di Indonesia</h3>
+      
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="number" name="days_after" placeholder="Masukan Index Hari" required="required" />
+      <p>Index Minimal 658</p>
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+
+   <br>
+   <br>
+ </div>
+ 
+ <div class="hasil_prediksi">
+  <table class="table-prediksi">
+    <tr>
+      <th>Index</th>
+      <th>Tanggal </th>
+      <th>Prediksi Total Kematian</th>
+    </tr>
+    {%for data in BB%}
+     <tr>
+        <td class="table-data">{{data[0]}}</td>
+        <td class="table-data">{{data[1]}}</td>
+        <td class="table-data">{{data[2]}}</td>
+     </tr>
+     {% endfor %}
+   </table>  
+ </div>
+
+
+
+
+</body>
+</html>
